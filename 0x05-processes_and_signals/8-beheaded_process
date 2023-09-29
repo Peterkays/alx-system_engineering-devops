@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Kill a infinite loop easy way
+
+pkill -f -9 "7-highlander"
