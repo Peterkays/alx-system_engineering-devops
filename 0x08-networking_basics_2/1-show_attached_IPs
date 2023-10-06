@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-#Display all active IPv4
-
-ifconfig -a | grep -n 'inet ' | cut -d ":" -f3 | cut -d " " -f1
+#shows attached IPS
+ip a | grep "scope" | grep -Po '(?<=inet )[\d.]+'
