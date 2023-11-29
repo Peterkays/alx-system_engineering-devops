@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This bash script will configure an ubuntu machine to start an Ngnix server
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo nginx -t
+sudo service nginx restart
