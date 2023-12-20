@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Set variables of purpose
+MYSQL_USER="root"
+MYSQL_PASSWORD="your_password"
+MYSQL_DATABASE="your_database"
+MYSQL_DUMP="backup.sql"
+MYSQL_ARCHIVE="backup.tar.gz"
+
+# Create a backup directory if it doesn't exist
+mkdir -p backup
+
+# Generate MySQL dump
+mysqldump -u $MYSQL_USER -p $MYSQL_PASSWORD $MYSQL_DATABASE > $MYSQL_DUMP
+
+# Compress the MySQL dump into a tar.gz archive
+gzip -c $MYSQL_DUMP > $MYSQL_ARCHIVE
+
+# Display a message to indicate success
+echo "Backup completed successfully."
+
