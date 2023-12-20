@@ -2,8 +2,8 @@
 
 # Set variables of purpose
 MYSQL_USER="root"
-MYSQL_PASSWORD="your_password"
-MYSQL_DATABASE="your_database"
+MYSQL_PASSWORD="Zengezamain#"
+MYSQL_DATABASE="tyrell_corp"
 MYSQL_DUMP="backup.sql"
 MYSQL_ARCHIVE="backup.tar.gz"
 
