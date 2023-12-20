@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
-# Set variables of purpose
-MYSQL_USER="root"
-MYSQL_PASSWORD="Zengezamain#"
-MYSQL_DATABASE="tyrell_corp"
-MYSQL_DUMP="backup.sql"
-MYSQL_ARCHIVE="backup.tar.gz"
+# Exit immediately if a command exits with a non-zero status
+set -e
 
-# Create a backup directory if it doesn't exist
-mkdir -p backup
+# Get today's date in the specified format
+today=$(date +"%d-%m-%Y")
 
-# Generate MySQL dump
-mysqldump -u $MYSQL_USER -p $MYSQL_PASSWORD $MYSQL_DATABASE > $MYSQL_DUMP
+# Get the MySQL password from the script argument
+password=$1
 
-# Compress the MySQL dump into a tar.gz archive
-gzip -c $MYSQL_DUMP > $MYSQL_ARCHIVE
+# Generate the MySQL dump of all databases
+mysqldump -u root -p"$password" --all-databases > backup.sql
 
-# Display a message to indicate success
-echo "Backup completed successfully."
+# Create a compressed archive of the dump file
+tar -czvf "$today.tar.gz" backup.sql
+
+# Remove the original dump file
+rm backup.sql
+
+echo "MySQL dump and compressed archive created successfully!"
 
