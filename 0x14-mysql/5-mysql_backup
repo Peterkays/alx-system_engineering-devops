@@ -14,8 +14,8 @@ password=$1
 mysqldump -u root -p"$password" --all-databases > backup.sql
 
 # Create a compressed archive of the dump file
-tar -czvf "$today.tar.gz" backup.sql
-
+#tar -czvf "$today.tar.gz" backup.sql
+gzip -c backup.sql > "$today.tar.gz"
 # Remove the original dump file
 #rm backup.sql
 
