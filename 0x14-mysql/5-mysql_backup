@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# this script that generates a MySQL dump and creates a compressed archive out of it
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Get today's date in the specified format
+today=$(date +"%d-%m-%Y")
+
+# Get the MySQL password from the script argument
+password=$1
+
+# Generate the MySQL dump of all databases
+mysqldump -u root -p"$password" --all-databases > backup.sql
+
+# Create a compressed archive of the dump file
+#tar -czvf "$today.tar.gz" backup.sql
+gzip -c backup.sql > "$today.tar.gz"
+# Remove the original dump file
+#rm backup.sql
+
+echo "MySQL dump and compressed archive created successfully!"
+
